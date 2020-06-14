@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 )
 
@@ -37,6 +38,7 @@ func (bot *Bot) StartPolling() (err error) {
 	for {
 		answer, err := http.Get(fmt.Sprintf("%s?act=a_check&key=%s&ts=%s&wait=25", bot.server, bot.secretKey, bot.ts))
 		if err != nil {
+			log.Println(err)
 			return err
 		}
 
